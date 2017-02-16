@@ -5,13 +5,13 @@ checkSchema = {
         "source": {
             "type": "object",
             "properties": {
-                "preFix": {
+                "prefix": {
                     "type": "string"
                 },
 
             },
             "required": [
-                "preFix"
+                "prefix"
             ]
         },
         "version": {
@@ -38,13 +38,13 @@ outSchema = {
         "source": {
             "type": "object",
             "properties": {
-                "preFix": {
+                "prefix": {
                     "type": "string"
                 },
 
             },
             "required": [
-                "preFix"
+                "prefix"
             ]
         },
         "names": {
