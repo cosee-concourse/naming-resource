@@ -1,5 +1,4 @@
 from concourse_common import common
-import schemas
 from enum import Enum
 
 VERSION_JSON_NAME = 'version'

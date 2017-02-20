@@ -2,7 +2,7 @@ import sys
 from concourse_common import common
 import json
 from model import Model
-import os
+import file_io
 
 
 def execute(filepath):
@@ -12,7 +12,7 @@ def execute(filepath):
     except:
         return -1
 
-    print(json.dumps({"version" : {"version":  open(os.path.join(filepath, model.get_version_file())).read()}}))
+    print(json.dumps({"version" : {"version":  file_io.read(filepath, model.get_version_file())}}))
 
     return 0
 
