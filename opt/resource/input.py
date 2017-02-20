@@ -1,10 +1,13 @@
 import sys
 from concourse_common import common
 import json
-import json_output
 import os
 from model import Model
+import name_generator
 
+def write_to_file(filepath, name):
+    with open(filepath, "w+") as file:
+        file.write(name)
 
 def execute(filepath):
 
@@ -17,10 +20,12 @@ def execute(filepath):
         common.log("invalid Prefix", file=sys.stderr)
         return -1
 
-    common.log("returned version:" + json_output.inout_output(model.get_version(), model.get_prefix()))
-    with open(os.path.join(filepath, "name"), "w+") as file:
-        file.write(json_output.inout_output(model.get_version(), model.get_prefix()))
-    common.log("file saved to: " + os.path.join(filepath, "name"))
+    write_to_file(os.path.join(filepath, "default"),
+                  name_generator.generate_default(model.get_version(), model.get_prefix()))
+
+    write_to_file(os.path.join(filepath, "heroku"),
+                  name_generator.generate_heroku(model.get_version(), model.get_prefix()))
+
     print(json.dumps({"version" : {"version" : model.get_version()}}))
 
     return 0
