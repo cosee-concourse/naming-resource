@@ -20,8 +20,8 @@ def execute(filepath):
     common.log("returned version:" + json_output.inout_output(model.get_version(), model.get_prefix()))
     with open(os.path.join(filepath, "name"), "w+") as file:
         file.write(json_output.inout_output(model.get_version(), model.get_prefix()))
+    common.log("file saved to: " + os.path.join(filepath, "name"))
     print(json.dumps({"version" : {"version" : model.get_version()}}))
-    
 
     return 0
 
