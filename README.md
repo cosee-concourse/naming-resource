@@ -7,8 +7,8 @@ Generates names for various services using a prefix and the current version.
 
 ## Source Configuration
 
-* `prefix`: *Required.* The prefix before the semantic version to be used in service names. Must only contain
-  alphabetic characters and should be unique to not cause name conflicts in services.
+* `prefix`: *Required.* The prefix to be used in service names. Must only contain alphabetic characters and has to be 
+   unique in order to not cause name conflicts in services.
 
 ## Behavior
 
