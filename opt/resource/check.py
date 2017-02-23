@@ -4,7 +4,7 @@ import json
 
 def execute():
 
-    print(json.dumps({[]}))
+    print(json.dumps([{}]))
 
     return 0
 
