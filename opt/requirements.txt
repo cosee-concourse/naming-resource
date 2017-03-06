@@ -1,1 +1,2 @@
 git+https://github.com/cosee-concourse/concourse-common.git
+pytest >= 3.0.6
