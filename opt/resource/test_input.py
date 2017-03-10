@@ -26,3 +26,7 @@ class TestInput(unittest.TestCase):
         testutil.put_stdin(json.dumps({"source": {"prefix": "test"}, "version": {"version": "1.1.0"}}))
         input.execute(test)
         mock_io.dumps.assert_any_call({"version": {"version": "1.1.0"}})
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -1,30 +1,35 @@
 import sys
 from concourse_common import common
+from concourse_common import jsonutil
+from concourse_common import request
 import json
 import os
-from model import Model
 import name_generator
 import file_io
+import schemas
 
 
 def execute(filepath):
 
-    try:
-        model = Model()
-    except:
+    valid, payload = jsonutil.load_and_validate_payload(schemas, request.Request.IN)
+
+    if valid is False:
         return -1
 
-    if model.get_prefix() is (None or "") or not model.get_prefix().isalpha():
+    prefix = jsonutil.get_source_value(payload, "prefix")
+    version = jsonutil.get_version(payload, "version")
+
+    if prefix is (None or "") or not prefix.isalpha():
         common.log("invalid Prefix")
         return -1
 
     file_io.write_to_file(os.path.join(filepath, "default"),
-                  name_generator.generate_default(model.get_version(), model.get_prefix()))
+                          name_generator.generate_default(version, prefix))
 
     file_io.write_to_file(os.path.join(filepath, "heroku"),
-                  name_generator.generate_heroku(model.get_version(), model.get_prefix()))
+                          name_generator.generate_heroku(version, prefix))
 
-    print(json.dumps({"version" : {"version" : model.get_version()}}))
+    print(json.dumps({"version": {"version": version}}))
 
     return 0
 
